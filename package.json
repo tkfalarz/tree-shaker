@@ -1,0 +1,40 @@
+{
+  "name": "tree-shaker",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "ES Module bundle analyzer in the context of tree shaking",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "node esbuild.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkfalarz/tree-shaker.git"
+  },
+  "keywords": [
+    "tree",
+    "shaking",
+    "esm",
+    "ecmascript",
+    "modules",
+    "es6"
+  ],
+  "author": "Tomasz Falarz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkfalarz/tree-shaker/issues"
+  },
+  "homepage": "https://github.com/tkfalarz/tree-shaker#readme",
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}

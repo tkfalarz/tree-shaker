@@ -7,7 +7,7 @@ esbuild.build({
     bundle: true,
     platform: 'node',
     target: 'es2020',
-    tsconfig: './tsconfig.node.json',
+    tsconfig: './tsconfig.node.json'
 }).then(() => {
     console.log('Build succeeded.');
 }).catch(() => {

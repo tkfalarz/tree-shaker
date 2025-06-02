@@ -1,16 +1,36 @@
-import {analyzeTreeShake} from './tree-shaker';
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import { analyzeBundle } from "./bundle-analysis";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 
-const argv = yargs(hideBin(process.argv))
-    .option('input', {
-        type: 'string',
-        describe: 'Path to the input file to analyze',
-        demandOption: true,
-    })
-    .help()
-    .parse();
+const args = yargs(hideBin(process.argv))
+  .option("entry", {
+    alias: "e",
+    type: "string",
+    description: "Path to the file to analyze",
+    demandOption: true,
+  })
+  .option("reportDir", {
+    alias: "d",
+    type: "string",
+    description: "Directory to save the reports",
+    default: "./tree-shaker-reports",
+  })
+  .option("acceptableThreshold", {
+    alias: "t",
+    coerce: (value: number) => {
+        if (value < 0 || value > 100) {
+            throw new Error("acceptableThreshold must be a percentage between 0 and 100.");
+        }
+        return value;
+    },
+    type: "number",
+    description: "What percentage of tree shaking is acceptable",
+    default: 0,
+  })
+  .parseSync();
 
-const inputFile = argv.input;
-
-analyzeTreeShake(inputFile);
+analyzeBundle({
+  entry: args.entry,
+  reportDir: args.reportDir,
+  acceptableThreshold: args.acceptableThreshold,
+});

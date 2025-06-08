@@ -1,6 +1,6 @@
-import { analyzeBundle } from "./bundle-analysis";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { analyzeTreeShaking } from "./bundle-analysis";
 
 const args = yargs(hideBin(process.argv))
   .option("entry", {
@@ -29,8 +29,8 @@ const args = yargs(hideBin(process.argv))
   })
   .parseSync();
 
-analyzeBundle({
-  entry: args.entry,
-  reportDir: args.reportDir,
-  acceptableThreshold: args.acceptableThreshold,
+analyzeTreeShaking({
+  file: args.entry,
+  logDictPath: args.reportDir,
+  minOptimization: args.acceptableThreshold,
 });
